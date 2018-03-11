@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/src/main.cpp
+cstdlib
+-
+iostream
+-
+

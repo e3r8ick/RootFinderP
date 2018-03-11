@@ -1,0 +1,16 @@
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/CMakeFiles/test.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/CMakeFiles/edit_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/CMakeFiles/rebuild_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/src/CMakeFiles/test.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/src/CMakeFiles/anpi.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/src/CMakeFiles/rebuild_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/src/CMakeFiles/tarea03.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/src/CMakeFiles/edit_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/test/CMakeFiles/test.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/test/CMakeFiles/edit_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/test/CMakeFiles/rebuild_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/test/CMakeFiles/tester.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/benchmarks/CMakeFiles/test.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/benchmarks/CMakeFiles/rebuild_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/benchmarks/CMakeFiles/edit_cache.dir
+/home/e3r8ick/ProyectosTec/Análisis Numérico/Tarea3/RootFinder/code/build/benchmarks/CMakeFiles/benchmark.dir

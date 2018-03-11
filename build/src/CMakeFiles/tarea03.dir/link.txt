@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wall -Wno-long-long -pedantic -march=native -fopenmp -O3   CMakeFiles/tarea03.dir/main.cpp.o  -o tarea03 libanpi.a -lpython2.7 
