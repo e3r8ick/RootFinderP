@@ -10,11 +10,22 @@
 
 #include <cstdlib>
 #include <iostream>
+#include "deflate.hpp"
+#include <boost/math/tools/polynomial.hpp>
+using namespace boost::math::tools;
 
 int main() {
 
   // Put your main code in here
-
+  polynomial<double> res {{0}};
+  polynomial<double> const a{{1.0, 0, 8.0, 1.0}};
+  polynomial<double> const b = anpi::deflate(a, 3.0, res);  
+  std::cout << "Residuo: " << res[0] << std::endl;
+  for (int i = b.size() ; i >= 0; --i ){
+    std::cout <<b[i];
+    std::cout << ",";
+  }
+  std::cout << std::endl;
   
   return EXIT_FAILURE;
 }
