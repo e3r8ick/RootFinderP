@@ -11,6 +11,7 @@
 #include <cmath>
 #include <limits>
 #include <functional>
+#include <iostream>
 
 #include "Exception.hpp"
 #include <boost/math/tools/polynomial.hpp>
@@ -32,8 +33,7 @@ namespace anpi {
    *         have same sign.
    */
   template<typename T>
-  polynomial<T> laguerre(const polynomial<T>& poly, T x) {
-
+  T laguerre(const polynomial<T>& poly, T x) {
     T eps = sqrt(std::numeric_limits<T>::epsilon());
     T n = poly.size()-1;
     T p=0; 
@@ -45,27 +45,21 @@ namespace anpi {
       p=p*x+poly[j];//polinomio evaluado en x
     }
 
-    T xk = 0;
+    T xk = x;
     T g = 0;
     T h = 0;
     T sk = 0;
     T maxi = std::numeric_limits<T>::digits;
-    for(T i=0; xk>eps || i==maxi; i++){   
+    T pol = poly.evaluate(xk);
+    for(T i=0; pol>eps || i==maxi; i++){   
       g = df/p;
       h= g*g-(ddf/df);
-      sk= n/(g+sgn(g+0)*sqrt((n-1*(n*h-g*g))));
+      sk= n/(g+boost::math::sign(g+0)*sqrt((n-1*(n*h-g*g))));
       xk = xk - sk;
+      pol = poly.evaluate(xk);
     }
-	
-
-    // Return NaN if no root was found
-    return std::numeric_limits<T>::quiet_NaN();
+    return xk;
   }
-
-  template <typename T> T sgn(T val) {
-    return (T(0) < val) - (val < T(0));
-}
-
 }
 
 #endif
