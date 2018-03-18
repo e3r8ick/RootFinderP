@@ -26,14 +26,14 @@ namespace anpi
    *
    * @return root the calculated root of the polynomial.
    */
-template <typename T, typename U>
-U muller(const polynomial<T> &poly, U xi, U h, bool pulir){
+template <typename T, typename U,size_t N >
+U muller(const polynomial<T> &poly, U xi, U h, bool pulir, std::array<U, N> &roots ){
     //definir variables del método
     polynomial<T> reducedPoly = poly;
-    int degree =(int) poly.size();
+    int degree =(int) poly.degree();
     int n = 0; //cantidad de raíces encontradas
-    T roots[degree];  //raíces
-    while (n <= degree){
+    while (n < degree-1){
+
         U ximin1, ximin2;
         if (xi == 0){
             ximin1 = xi + h;
@@ -52,9 +52,6 @@ U muller(const polynomial<T> &poly, U xi, U h, bool pulir){
         int i = 0; 
         U ea = 100; //aproximate error
         do{
-            if (n == 3){
-                return 0;
-            }
             fi = reducedPoly.evaluate(xi);
             fimin1 = reducedPoly.evaluate(ximin1);
             fimin2 = reducedPoly.evaluate(ximin2);
@@ -78,22 +75,20 @@ U muller(const polynomial<T> &poly, U xi, U h, bool pulir){
             xi = xiplus1;
             ++i;
             if (abs(dxi) < abs(eps*xiplus1)){
-                std::cout << xiplus1 << std::endl;
                 roots[n] = xiplus1; 
                 n+=1;
                 polynomial<T> residuo {{0}};
-                std::cout << "Inicio" << std::endl;
-                reducedPoly = anpi::deflate(poly, xiplus1, residuo);
-                for (int i = 0; i < reducedPoly.size(); ++i){
-                    std::cout << reducedPoly[i] << std::endl;
-                }
-                std::cout << "FIn" << std::endl; 
-                i = 0;
+                reducedPoly = anpi::deflate(reducedPoly, xiplus1, residuo);                
                 xi = 0.0;
+                break;
             }
         }while (i < maxi);//end do .. while
+        if (i >= maxi){
+            return 0;
+        }
     } // FIN WHILE N < DEGREE
-    return std::numeric_limits<U>::quiet_NaN();
+    roots[n] = -reducedPoly[0];
+    return 1;
     }
 }
 #endif
