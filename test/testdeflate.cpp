@@ -26,7 +26,7 @@ namespace anpi
     template <typename T>
     void testDeflate(){
         polynomial<double> res {{0}};
-        polynomial<double> const poly{{-4,3,1}};
+        polynomial<double> const poly{{-6, 13, -6, -3, 2 }};
         polynomial<T> sol = deflate(poly, T(1), res);
         std::cout << res[0] << std::endl;
         BOOST_CHECK(res[0]  == 0);
