@@ -18,15 +18,12 @@ using namespace boost::math::tools;
 
 int main() {
 
-  polynomial<double> const poli({-12,-13,0,1});
-  double x = anpi::muller(poli, 0.0, 0.1, true);
-  std::cout << x << std::endl;
+  polynomial<double> const poli({0.600002,-6.10002,0.90001,1});
+  std::array<double, 3> roots;
+  anpi::muller(poli, 0.0, 0.1, true, roots);
+  for (int i = 0; i < 3; ++i){
+    
+    std::cout << roots[i] << std::endl;
+  }
   return EXIT_SUCCESS;
-  
-  //polynomial<double> const pol{{-18,9,7,1,1}};
-  //std::complex<double> root = anpi::muller(pol, std::complex<double>(0.0), std::complex<double>(1.0), std::complex<double>(-1.0));
-  //std::cout << root.real() << "+ i" << root.imag() << std::endl;
-  //double root = anpi::muller(poli, 0.0, 3.0, -1.0);
-  //std::cout << root << std::endl;
 }
-  
