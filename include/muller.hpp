@@ -19,15 +19,11 @@ namespace anpi
    * Calculates the roots of a polynomial using Muller's method
    * given the 3 starting points.
    *
-   * @param poly the polynomial 
-   * @param xi the highest starting point
-   * @param ximin1 the middle starting point
-   * @param ximin2 the lowest starting point.
-   *
-   * @return root the calculated root of the polynomial.
-   */
-template <typename T, typename U,size_t N >
-U muller(const polynomial<T> &poly, U xi, U h, bool pulir, std::array<U, N> &roots ){
+*/
+
+  
+template <typename T, typename U >
+U muller(const polynomial<T> &poly, U xi, U h, bool pulir, U roots[], int tama ){
     //definir variables del método
     polynomial<T> reducedPoly = poly;
     int degree =(int) poly.degree();
@@ -84,11 +80,9 @@ U muller(const polynomial<T> &poly, U xi, U h, bool pulir, std::array<U, N> &roo
             ++i;
             if (pulir && !puliendo){
                 puliendo = true;
-                std::cout << "pulir" << std::endl;
                 break;
             }//end pulir
             else if (abs(dxi) < abs(eps*xiplus1)){
-                std::cout << "insertar ya pulido" << std::endl;
                 roots[n] = xiplus1; 
                 n+=1;
                 polynomial<T> residuo {{0}};

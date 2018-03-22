@@ -20,19 +20,6 @@
 using namespace boost::math::tools;
 namespace anpi {
 
-  /**
-   * Find the roots of the function funct with the LAGUERRE method
-   *
-   * @param funct a std::function of the form "T funct(T x)"
-   * @param xl lower interval limit
-   * @param xu upper interval limit
-   *
-   * @return root found, or NaN if none could be found.
-   *
-   * @throws anpi::Exception if inteval is reversed or both extremes
-   *         have same sign.
-   */
-
   template<typename T> 
   T laguerre(const polynomial<T>& poly, T xi){
     T n = poly.degree();
