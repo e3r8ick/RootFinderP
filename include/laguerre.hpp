@@ -12,8 +12,8 @@
 #include <limits>
 #include <functional>
 #include <iostream>
-
 #include "Exception.hpp"
+#include <iomanip>
 #include <boost/math/tools/polynomial.hpp>
 #ifndef ANPI_LAGUERRE_HPP
 #define ANPI_LAGUERRE_HPP
@@ -32,34 +32,50 @@ namespace anpi {
    * @throws anpi::Exception if inteval is reversed or both extremes
    *         have same sign.
    */
-  template<typename T>
-  T laguerre(const polynomial<T>& poly, T x) {
-    T eps = sqrt(std::numeric_limits<T>::epsilon());
-    T n = poly.size()-1;
-    T p=0; 
+
+  template<typename T> 
+  T laguerre(const polynomial<T>& poly, T xi){
+    T n = poly.degree();
     T df=0; 
     T ddf=0;
-    for(int j=n; j>=0; j--){
-      ddf=ddf*x+df; //segunda derivada
-      df=df*x+p; //primera derivada
-      p=p*x+poly[j];//polinomio evaluado en x
-    }
-
-    T xk = x;
-    T g = 0;
-    T h = 0;
-    T sk = 0;
-    T maxi = std::numeric_limits<T>::digits;
-    T pol = poly.evaluate(xk);
-    for(T i=0; pol>eps || i==maxi; i++){   
-      g = df/p;
-      h= g*g-(ddf/df);
-      sk= n/(g+boost::math::sign(g+0)*sqrt((n-1*(n*h-g*g))));
-      xk = xk - sk;
-      pol = poly.evaluate(xk);
-    }
-    return xk;
+    T xp = 1;        
+    int maxi = std::numeric_limits<T>::digits;
+    T eps = std::numeric_limits<T>::epsilon();
+    T g, h, a;
+    T fi = poly.evaluate(xi);
+    for (int i = 0; i < maxi; ++i){
+      if (abs(fi) < sqrt(eps)){
+        return xi;
+      }else{
+        //primer derivada
+        df = 0;
+        xp = 1;
+        std::cout << "Derivadas para " << xi << std::endl;
+        for (int i= 1; i<(n+1); i++){
+          df += i*xp*poly[i];
+          xp*=xi;
+        }
+        std::cout << "1era: " << df << std::endl;
+        xp = 1.0;
+        ddf = 0;
+        //segunda derivada
+        for (int i = 2; i<(n+1); i++){
+          ddf += (i-1)*i*xp*poly[i];
+          xp*=xi;
+        }
+        std::cout << "2da: " << ddf << std::endl;
+        g = df/fi;
+        h = g*g - ddf/df;
+        a = n/(g+boost::math::sign(g+0)*sqrt((n-1)*(n*h-g*g)));
+        xi = xi-a;
+        fi = poly.evaluate(xi);
+      if (abs(a) < sqrt(eps)){
+        return xi;
+      }
+      }//end else siguiente iteración.
+    }//end for
+    return xi;
   }
-}
 
+}
 #endif
